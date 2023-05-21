@@ -60,13 +60,6 @@
 			path = Searchify;
 			sourceTree = "<group>";
 		};
-		9D1CCFD32A19BB2A00CD4885 /* CoreDataModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CoreDataModel;
-			sourceTree = "<group>";
-		};
 		9D1CCFD42A19BB3F00CD4885 /* MainResources */ = {
 			isa = PBXGroup;
 			children = (
@@ -75,7 +68,6 @@
 				9D1CCFC62A19B8A000CD4885 /* Assets.xcassets */,
 				9D1CCFC82A19B8A000CD4885 /* LaunchScreen.storyboard */,
 				9D1CCFCB2A19B8A000CD4885 /* Info.plist */,
-				9D1CCFD32A19BB2A00CD4885 /* CoreDataModel */,
 			);
 			path = MainResources;
 			sourceTree = "<group>";
