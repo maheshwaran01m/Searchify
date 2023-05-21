@@ -17,6 +17,11 @@ class ViewController: UIViewController {
     return $0
   }(UITableView(frame: .zero, style: .grouped))
   
+  lazy var addButton: UIBarButtonItem = {
+    return UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain,
+                           target: self, action: #selector(createNewStudent))
+  }()
+  
   // MARK: - Override Method
   
   override func viewDidLoad() {
@@ -30,6 +35,11 @@ class ViewController: UIViewController {
     self.view.backgroundColor = .systemBackground
     self.title = "Searchify"
     configureTableView()
+    configureNavigationBarButton()
+  }
+  
+  private func configureNavigationBarButton() {
+    self.navigationItem.rightBarButtonItem = addButton
   }
   
   // MARK: - TableView
@@ -52,6 +62,12 @@ class ViewController: UIViewController {
       tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
     ])
+  }
+  
+  // MARK: - Custom Methods
+  
+  @objc private func createNewStudent(_ sender: UIBarButtonItem) {
+    
   }
 }
 
