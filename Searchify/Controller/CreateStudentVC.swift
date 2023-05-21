@@ -9,9 +9,11 @@ import UIKit
 
 class CreateStudentVC: UIViewController {
   
+  var student: Student?
+  
   // MARK: - Event Delegation
   
-  var selectedStudent: ((Student) -> Void)?
+  var selectedStudent: ((LocalStudent) -> Void)?
   
   // MARK: - Outlets
   
@@ -173,14 +175,16 @@ class CreateStudentVC: UIViewController {
     ])
   }
   
-  func updateUserDetail(student: Student? = nil) {
-    guard let student else { return }
-    self.title = "Update Student"
-    studentNameField.text = student.name
-    courseNameField.text = student.courseName
-    departmentField.text = student.department
-    completeToggle.isOn = student.isCompleted
-    savebutton.setTitle("Update", for: .normal)
+  func updateUserDetail(updateStudent: Student? = nil) {
+    if let student = updateStudent {
+      self.student = student
+      self.title = "Update Student"
+      studentNameField.text = student.name
+      courseNameField.text = student.courseName
+      departmentField.text = student.department
+      completeToggle.isOn = student.isCompleted
+      savebutton.setTitle("Update", for: .normal)
+    }
   }
   
   // MARK: - Save Student
@@ -197,8 +201,9 @@ class CreateStudentVC: UIViewController {
       alertCreateUserError()
       return
     }
-    let student = Student(name: name, courseName: courseName,
-                          department: department, isCompleted: completeToggle.isOn)
+    let student = LocalStudent(privateID: student?.privateID ?? UUID().uuidString,
+                               name: name, courseName: courseName,
+                               department: department, isCompleted: completeToggle.isOn)
     self.selectedStudent?(student)
     self.navigationController?.popViewController(animated: true)
   }
