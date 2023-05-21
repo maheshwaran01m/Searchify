@@ -17,6 +17,8 @@
 		9D622BC42A1A176600BFC8E2 /* StudentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D622BC32A1A176600BFC8E2 /* StudentListViewModel.swift */; };
 		9D622BC82A1A180D00BFC8E2 /* SearchifyDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D622BC62A1A180D00BFC8E2 /* SearchifyDataModel.xcdatamodeld */; };
 		9D622BCA2A1A1FC600BFC8E2 /* CoreDataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D622BC92A1A1FC600BFC8E2 /* CoreDataServices.swift */; };
+		9D622BCC2A1A505500BFC8E2 /* StudentSearchWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D622BCB2A1A505500BFC8E2 /* StudentSearchWorker.swift */; };
+		9D622BCF2A1A534F00BFC8E2 /* SearchParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D622BCE2A1A534F00BFC8E2 /* SearchParameter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		9D622BC32A1A176600BFC8E2 /* StudentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListViewModel.swift; sourceTree = "<group>"; };
 		9D622BC72A1A180D00BFC8E2 /* SearchifyDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SearchifyDataModel.xcdatamodel; sourceTree = "<group>"; };
 		9D622BC92A1A1FC600BFC8E2 /* CoreDataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServices.swift; sourceTree = "<group>"; };
+		9D622BCB2A1A505500BFC8E2 /* StudentSearchWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSearchWorker.swift; sourceTree = "<group>"; };
+		9D622BCE2A1A534F00BFC8E2 /* SearchParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchParameter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				9D622BC32A1A176600BFC8E2 /* StudentListViewModel.swift */,
+				9D622BCD2A1A533C00BFC8E2 /* SearchWorker */,
 			);
 			path = StudentListViewModel;
 			sourceTree = "<group>";
@@ -117,6 +122,15 @@
 				9D622BC92A1A1FC600BFC8E2 /* CoreDataServices.swift */,
 			);
 			name = CoreDataModel;
+			sourceTree = "<group>";
+		};
+		9D622BCD2A1A533C00BFC8E2 /* SearchWorker */ = {
+			isa = PBXGroup;
+			children = (
+				9D622BCB2A1A505500BFC8E2 /* StudentSearchWorker.swift */,
+				9D622BCE2A1A534F00BFC8E2 /* SearchParameter.swift */,
+			);
+			path = SearchWorker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,7 +210,9 @@
 				9D622BC42A1A176600BFC8E2 /* StudentListViewModel.swift in Sources */,
 				9D1CCFC22A19B8A000CD4885 /* ViewController.swift in Sources */,
 				9D1CCFBE2A19B8A000CD4885 /* AppDelegate.swift in Sources */,
+				9D622BCF2A1A534F00BFC8E2 /* SearchParameter.swift in Sources */,
 				9D1CCFC02A19B8A000CD4885 /* SceneDelegate.swift in Sources */,
+				9D622BCC2A1A505500BFC8E2 /* StudentSearchWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

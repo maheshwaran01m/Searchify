@@ -16,6 +16,7 @@ class ViewController: UIViewController {
   lazy var tableView: UITableView = {
     $0.estimatedRowHeight = UITableView.automaticDimension
     $0.tableFooterView = UIView()
+    $0.sectionHeaderTopPadding = 0.0
     return $0
   }(UITableView(frame: .zero, style: .grouped))
   
@@ -31,6 +32,11 @@ class ViewController: UIViewController {
     configureView()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    configureSearchBar()
+  }
+  
   // MARK: - View
   
   private func configureView() {
@@ -38,6 +44,7 @@ class ViewController: UIViewController {
     self.title = "Searchify"
     configureTableView()
     configureNavigationBarButton()
+    configureSearchBar()
   }
   
   private func configureNavigationBarButton() {
@@ -66,6 +73,50 @@ class ViewController: UIViewController {
     ])
   }
   
+  // MARK: - SearchBar
+  
+  let searchController = UISearchController(searchResultsController: nil)
+  
+  var searchWorker: StudentSearchWorker?
+  
+  private func configureSearchBar() {
+    self.navigationItem.searchController = searchController
+    searchController.searchBar.delegate = self
+    searchController.obscuresBackgroundDuringPresentation = false
+    searchController.hidesNavigationBarDuringPresentation = false
+    searchController.extendedLayoutIncludesOpaqueBars = true
+    searchController.searchBar.barTintColor = .white
+    navigationItem.hidesSearchBarWhenScrolling = false
+    definesPresentationContext = true
+    searchController.searchResultsUpdater = self
+    searchController.searchBar.placeholder = "Search Student"
+    searchController.searchBar.showsBookmarkButton = true
+    searchController.searchBar.setImage(UIImage(systemName: "text.magnifyingglass"),
+                              for: .bookmark, state: .normal)
+    if #available(iOS 16.0, *) {
+      navigationItem.preferredSearchBarPlacement = .stacked
+    }
+    searchController.searchBar.sizeToFit()
+    setupSearchWorker()
+  }
+  
+  private func setupSearchWorker() {
+    let parameter = SearchParameter()
+    parameter.filterOptions = SearchFilterOption.searchFilterOptions
+    let searchWorker = StudentSearchWorker(searchParameter: parameter) { [weak self] (_, predicate) in
+      self?.viewModel.searchPredicate = predicate
+      self?.viewModel.updateSearchResult {
+        self?.tableView.reloadData()
+      }
+    }
+    self.searchWorker = searchWorker
+  }
+  
+  private func resetSearchBar() {
+    searchController.searchBar.resignFirstResponder()
+    searchController.searchBar.showsCancelButton = false
+  }
+  
   // MARK: - Custom Methods
   
   @objc private func createNewStudent(_ sender: UIBarButtonItem) {
@@ -73,6 +124,7 @@ class ViewController: UIViewController {
   }
   
   private func openStudentVC(_ student: Student? = nil) {
+    resetSearchBar()
     let studentVC = CreateStudentVC()
     studentVC.selectedStudent = { [weak self] student in
       self?.storeNewStudent(student)
@@ -129,5 +181,29 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     let deleteAction = UISwipeActionsConfiguration(actions: [delete])
     deleteAction.performsFirstActionWithFullSwipe = true
     return deleteAction
+  }
+}
+
+// MARK: - UISearchBarDelegate
+
+extension ViewController: UISearchBarDelegate, UISearchResultsUpdating {
+  
+  func updateSearchResults(for searchController: UISearchController) {
+    guard let searchText = searchController.searchBar.text else { return }
+    searchWorker?.searchForText(searchText)
+  }
+  
+  func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+    searchBar.showsCancelButton = true
+    return true
+  }
+  
+  func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    searchBar.showsCancelButton = false
+    searchWorker?.searchForText()
+  }
+  
+  func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+    print("Search Parameter")
   }
 }
