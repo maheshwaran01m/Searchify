@@ -11,15 +11,11 @@ struct Student {
   let name: String
   let courseName: String
   let department: String
-  let startDate: String
-  let endDate: String
   let isCompleted: Bool
   
   static let example = Student(name: "Maheshwaran",
                                courseName: "iOS Developement",
                                department: "Computer Science",
-                               startDate: "01-03-2023",
-                               endDate: "01-06-2023",
                                isCompleted: false)
 }
 

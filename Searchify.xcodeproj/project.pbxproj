@@ -13,6 +13,7 @@
 		9D1CCFC72A19B8A000CD4885 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D1CCFC62A19B8A000CD4885 /* Assets.xcassets */; };
 		9D1CCFCA2A19B8A000CD4885 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D1CCFC82A19B8A000CD4885 /* LaunchScreen.storyboard */; };
 		9D622BBF2A19CC2B00BFC8E2 /* StudentDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D622BBE2A19CC2B00BFC8E2 /* StudentDetailCell.swift */; };
+		9D622BC12A19DB3700BFC8E2 /* CreateStudentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D622BC02A19DB3700BFC8E2 /* CreateStudentVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		9D1CCFC92A19B8A000CD4885 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D1CCFCB2A19B8A000CD4885 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D622BBE2A19CC2B00BFC8E2 /* StudentDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDetailCell.swift; sourceTree = "<group>"; };
+		9D622BC02A19DB3700BFC8E2 /* CreateStudentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateStudentVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				9D622BBD2A19CBE600BFC8E2 /* StudentDetailCell */,
 				9D1CCFC12A19B8A000CD4885 /* ViewController.swift */,
+				9D622BC02A19DB3700BFC8E2 /* CreateStudentVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D622BC12A19DB3700BFC8E2 /* CreateStudentVC.swift in Sources */,
 				9D622BBF2A19CC2B00BFC8E2 /* StudentDetailCell.swift in Sources */,
 				9D1CCFC22A19B8A000CD4885 /* ViewController.swift in Sources */,
 				9D1CCFBE2A19B8A000CD4885 /* AppDelegate.swift in Sources */,

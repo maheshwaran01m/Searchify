@@ -67,7 +67,22 @@ class ViewController: UIViewController {
   // MARK: - Custom Methods
   
   @objc private func createNewStudent(_ sender: UIBarButtonItem) {
-    
+    openStudentVC()
+  }
+  
+  private func openStudentVC(_ student: Student? = nil) {
+    let studentVC = CreateStudentVC()
+    studentVC.selectedStudent = { [weak self] student in
+      self?.storeNewStudent(student)
+    }
+    if let student {
+      studentVC.updateUserDetail(student: student)
+    }
+    navigationController?.pushViewController(studentVC, animated: true)
+  }
+  
+  private func storeNewStudent(_ student: Student) {
+    print(student)
   }
 }
 
@@ -89,5 +104,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: false)
+    let student = Student(name: "Mitchelle", courseName: "iOS Dev", department: "CS", isCompleted: true)
+    openStudentVC(student)
   }
 }
