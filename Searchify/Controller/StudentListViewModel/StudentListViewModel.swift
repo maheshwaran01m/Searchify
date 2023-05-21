@@ -21,7 +21,7 @@ class StudentListViewModel: NSObject {
   private var predicate: NSPredicate? {
     var fetchPredicates: [NSPredicate] = []
     fetchPredicates.append(NSPredicate(format: "privateID != nil"))
-//    fetchPredicates.append(NSPredicate(format: "isCompleted==TRUE"))
+
     if let searchPredicate {
       fetchPredicates.append(searchPredicate)
     }
@@ -47,6 +47,11 @@ class StudentListViewModel: NSObject {
     frc?.delegate = self
     self.fetchResultsController = frc as? NSFetchedResultsController<Student>
     performFetch()
+  }
+  
+  func updateSearchResult(onCompletion: (() -> Void)?) {
+    configureFRC()
+    onCompletion?()
   }
   
   // MARK: - Save New Student
@@ -76,6 +81,7 @@ class StudentListViewModel: NSObject {
   
   private func fetchStudentsUsingFRC() {
     guard let fetchStudents = fetchResultsController?.fetchedObjects, !fetchStudents.isEmpty else {
+      students = []
       return
     }
     students = fetchStudents
@@ -83,9 +89,8 @@ class StudentListViewModel: NSObject {
   
   // MARK: - Fetch Assets
   
-  func makeFetchedResultsController(moc: NSManagedObjectContext) -> NSFetchedResultsController<NSFetchRequestResult>? {
-    let sortDescriptors = [NSSortDescriptor(key: "isCompleted", ascending: true),
-                           NSSortDescriptor(key: "courseName", ascending: true)]
+  func makeFetchedResultsController(moc: NSManagedObjectContext = .main) -> NSFetchedResultsController<NSFetchRequestResult>? {
+    let sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
     
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Student")
     fetchRequest.predicate = predicate
