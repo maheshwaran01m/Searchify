@@ -118,7 +118,7 @@ class CreateStudentVC: UIViewController {
   
   private func configureView() {
     self.view.backgroundColor = .systemBackground
-    self.title = "Create Student"
+    self.title = student == nil ? "Create Student" : "Update Student Details"
     configureUserDetailView()
   }
   
@@ -178,7 +178,6 @@ class CreateStudentVC: UIViewController {
   func updateUserDetail(updateStudent: Student? = nil) {
     if let student = updateStudent {
       self.student = student
-      self.title = "Update Student"
       studentNameField.text = student.name
       courseNameField.text = student.courseName
       departmentField.text = student.department
@@ -224,6 +223,8 @@ extension CreateStudentVC: UITextFieldDelegate {
       courseNameField.becomeFirstResponder()
     } else if textField == courseNameField {
       departmentField.becomeFirstResponder()
+    } else {
+      departmentField.resignFirstResponder()
     }
     return true
   }
