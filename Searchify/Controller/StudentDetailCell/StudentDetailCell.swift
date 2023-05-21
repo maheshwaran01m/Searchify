@@ -7,16 +7,12 @@
 
 import UIKit
 
-struct Student {
+struct LocalStudent {
+  let privateID: String
   let name: String
   let courseName: String
   let department: String
   let isCompleted: Bool
-  
-  static let example = Student(name: "Maheshwaran",
-                               courseName: "iOS Developement",
-                               department: "Computer Science",
-                               isCompleted: false)
 }
 
 class StudentDetailCell: UITableViewCell {
