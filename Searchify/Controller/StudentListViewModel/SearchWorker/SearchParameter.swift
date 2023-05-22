@@ -8,12 +8,12 @@
 import Foundation
 import UIKit
 
-protocol SearchFilterOptions {
+protocol SearchFilterOption {
   var title: String { get set }
   var property: String { get set }
 }
 
-class SearchFilterOption: SearchFilterOptions {
+class ParameterFilterOption: SearchFilterOption {
   
   var title: String
   var property: String
@@ -23,10 +23,11 @@ class SearchFilterOption: SearchFilterOptions {
     self.property = property
   }
   
-  static var searchFilterOptions: [SearchFilterOptions] {
-    var searchFilterOptions = [SearchFilterOptions]()
-    SearchFilterTitle.allCases.forEach({
-      searchFilterOptions.append(SearchFilterOption(title: $0.title, property: $0.keyPath))
+  static var searchFilterOptions: [SearchFilterOption] {
+    var searchFilterOptions = [SearchFilterOption]()
+    let filterOptions = SearchFilterTitle.allCases
+    filterOptions.forEach({
+      searchFilterOptions.append(ParameterFilterOption(title: $0.title, property: $0.keyPath))
     })
     return searchFilterOptions
   }
@@ -73,8 +74,8 @@ class SearchParameter {
     case contains = "CONTAINS[c]"
   }
   
-  var filterOptions: [SearchFilterOptions] = []
-  var chosenFilterOptions: [SearchFilterOptions] = []
+  var filterOptions: [SearchFilterOption] = []
+  var chosenFilterOptions: [SearchFilterOption] = []
   var combineType: CombineType = .or
   var searchType: SearchType = .contains
 }

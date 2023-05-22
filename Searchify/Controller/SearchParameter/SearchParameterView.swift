@@ -10,7 +10,7 @@ import UIKit
 
 protocol SearchParametersViewConfigurable: AnyObject {
   func resetSearchParametersView()
-  func clearSearchParam(_ searchParam: SearchFilterOptions)
+  func clearSearchParam(_ searchParam: SearchFilterOption)
 }
 
 class SearchParameterView: UIView {
@@ -21,7 +21,7 @@ class SearchParameterView: UIView {
   
   // MARK: - Properties
   
-  var searchFilterOptions: [SearchFilterOptions] = []
+  var searchFilterOptions: [SearchFilterOption] = []
   
   // MARK: - Outlets
   
@@ -72,7 +72,7 @@ class SearchParameterView: UIView {
     horizontalStack.setCustomSpacing(10, after: collectionView)
     container.addSubview(horizontalStack)
     configureCollectionView()
-    
+    container.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       container.topAnchor.constraint(equalTo: self.topAnchor),
       container.bottomAnchor.constraint(equalTo: self.bottomAnchor),
