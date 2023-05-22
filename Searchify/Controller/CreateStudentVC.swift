@@ -17,11 +17,12 @@ class CreateStudentVC: UIViewController {
   
   // MARK: - Outlets
   
-  private var verticalStackView: UIStackView = {
-    $0.spacing = 10
-    $0.axis = .vertical
+  private let container: UIView = {
+    $0.backgroundColor = .systemBackground
+    $0.isUserInteractionEnabled = true
+    $0.setContentHuggingPriority(UILayoutPriority(rawValue: 1000), for: .vertical)
     return $0
-  }(UIStackView())
+  }(UIView())
   
   private let studentNameLabel: UILabel = {
     $0.text = "Student "
@@ -123,30 +124,8 @@ class CreateStudentVC: UIViewController {
   }
   
   private func configureUserDetailView() {
-    view.addSubview(verticalStackView)
+    view.addSubview(container)
     
-    let studentHStack = UIStackView(arrangedSubviews: [studentNameLabel, studentNameField])
-    studentHStack.axis = .horizontal
-    studentHStack.distribution = .fill
-    
-    let courseHStack = UIStackView(arrangedSubviews: [courseNameLabel,courseNameField])
-    courseHStack.distribution = .fill
-    courseHStack.axis = .horizontal
-    
-    let departmentHStack = UIStackView(arrangedSubviews: [departmentNameLabel,departmentField])
-    departmentHStack.axis = .horizontal
-    
-    let completeHStack = UIStackView(arrangedSubviews: [completeLabel,completeToggle])
-    completeHStack.axis = .horizontal
-    
-    let container = UIStackView(arrangedSubviews: [studentHStack, courseHStack, departmentHStack,
-                                                   completeHStack, savebutton])
-    container.axis = .vertical
-    container.spacing = 10
-    container.distribution = .equalSpacing
-    verticalStackView.addArrangedSubview(container)
-    
-    verticalStackView.isUserInteractionEnabled = true
     studentNameField.delegate = self
     departmentField.delegate = self
     courseNameField.delegate = self
@@ -154,14 +133,54 @@ class CreateStudentVC: UIViewController {
   }
   
   private func updateViewConstraint() {
-    verticalStackView.translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      verticalStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-      verticalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-      verticalStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15)
-    ])
+    updateLayoutConstraints(view: [studentNameLabel, studentNameField, courseNameLabel, courseNameField,
+                                  departmentNameLabel, departmentField, completeLabel, completeToggle,
+                                  savebutton])
     
     NSLayoutConstraint.activate([
+      
+      container.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+      container.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+      container.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+      container.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15),
+      
+      studentNameLabel.topAnchor.constraint(equalTo: container.topAnchor, constant: 5),
+      studentNameLabel.leftAnchor.constraint(equalTo: container.leftAnchor),
+      studentNameLabel.rightAnchor.constraint(equalTo: container.rightAnchor, constant: -5),
+      
+      studentNameField.topAnchor.constraint(equalTo: studentNameLabel.bottomAnchor, constant: 3),
+      studentNameField.centerXAnchor.constraint(equalTo: studentNameLabel.centerXAnchor),
+      studentNameField.rightAnchor.constraint(equalTo: container.rightAnchor, constant: -5),
+      
+      courseNameLabel.topAnchor.constraint(equalTo: studentNameField.bottomAnchor, constant: 5),
+      courseNameLabel.centerXAnchor.constraint(equalTo: studentNameLabel.centerXAnchor),
+      courseNameLabel.rightAnchor.constraint(equalTo: container.rightAnchor, constant: -5),
+      
+      
+      courseNameField.topAnchor.constraint(equalTo: courseNameLabel.bottomAnchor, constant: 3),
+      courseNameField.leftAnchor.constraint(equalTo: studentNameLabel.leftAnchor),
+      courseNameField.rightAnchor.constraint(equalTo: container.rightAnchor, constant: -5),
+      
+      departmentNameLabel.topAnchor.constraint(equalTo: courseNameField.bottomAnchor, constant: 5),
+      departmentNameLabel.centerXAnchor.constraint(equalTo: studentNameLabel.centerXAnchor),
+      departmentNameLabel.rightAnchor.constraint(equalTo: container.rightAnchor, constant: -5),
+      
+      departmentField.topAnchor.constraint(equalTo: departmentNameLabel.bottomAnchor, constant: 3),
+      departmentField.centerXAnchor.constraint(equalTo: studentNameLabel.centerXAnchor),
+      departmentField.rightAnchor.constraint(equalTo: container.rightAnchor, constant: -5),
+      
+      completeLabel.topAnchor.constraint(equalTo: departmentField.bottomAnchor, constant: 10),
+      completeLabel.centerXAnchor.constraint(equalTo: studentNameLabel.centerXAnchor),
+      completeLabel.leftAnchor.constraint(equalTo: container.leftAnchor),
+      
+      completeToggle.centerYAnchor.constraint(equalTo: completeLabel.centerYAnchor),
+      completeToggle.rightAnchor.constraint(equalTo: container.rightAnchor, constant: -5),
+      
+      savebutton.topAnchor.constraint(equalTo: completeLabel.bottomAnchor, constant: 10),
+      savebutton.leftAnchor.constraint(equalTo: container.leftAnchor, constant: 5),
+      savebutton.rightAnchor.constraint(equalTo: container.rightAnchor, constant: -5),
+      
+      
       studentNameField.heightAnchor.constraint(equalToConstant: 34),
       courseNameField.heightAnchor.constraint(equalToConstant: 34),
       departmentField.heightAnchor.constraint(equalToConstant: 34),
@@ -172,6 +191,17 @@ class CreateStudentVC: UIViewController {
       departmentNameLabel.heightAnchor.constraint(equalToConstant: 34),
       completeLabel.heightAnchor.constraint(equalToConstant: 34)
     ])
+  }
+  
+  private func updateLayoutConstraints(view: [UIView], isEnabled: Bool = false) {
+    container.translatesAutoresizingMaskIntoConstraints = isEnabled
+    container.isUserInteractionEnabled = !isEnabled
+    
+    view.forEach {
+      container.addSubview($0)
+      $0.translatesAutoresizingMaskIntoConstraints = isEnabled
+      $0.isUserInteractionEnabled = !isEnabled
+    }
   }
   
   func updateUserDetail(updateStudent: Student? = nil) {
