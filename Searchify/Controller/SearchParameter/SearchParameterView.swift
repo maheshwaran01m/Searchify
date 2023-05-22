@@ -73,6 +73,7 @@ class SearchParameterView: UIView {
     container.addSubview(horizontalStack)
     configureCollectionView()
     container.translatesAutoresizingMaskIntoConstraints = false
+    horizontalStack.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       container.topAnchor.constraint(equalTo: self.topAnchor),
       container.bottomAnchor.constraint(equalTo: self.bottomAnchor),
