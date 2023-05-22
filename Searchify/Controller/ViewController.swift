@@ -64,7 +64,6 @@ class ViewController: UIViewController {
   
   private func tableViewConstraint() {
     tableView.translatesAutoresizingMaskIntoConstraints = false
-    
     NSLayoutConstraint.activate([
       tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -174,7 +173,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
   }
   
-  func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+  func tableView(_ tableView: UITableView,
+                 trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     let delete = UIContextualAction(style: .destructive, title: nil) { _, _, complete in
       if let student = self.viewModel.students?[indexPath.row] {
         self.viewModel.deleteStudent(student) {
@@ -251,8 +251,6 @@ extension ViewController {
       searchWorker?.searchParameter = searchParameter
     }
     reloadTableViewHeader()
-    // When searchParameter Filter or logic type updated, we need to update the search result
-//    searchController.updateSearchResults(for: searchController)
   }
   
   private func reloadTableViewHeader() {

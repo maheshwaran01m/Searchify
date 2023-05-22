@@ -155,7 +155,6 @@ class CreateStudentVC: UIViewController {
   
   private func updateViewConstraint() {
     verticalStackView.translatesAutoresizingMaskIntoConstraints = false
-    
     NSLayoutConstraint.activate([
       verticalStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
       verticalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
