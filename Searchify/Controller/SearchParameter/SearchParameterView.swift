@@ -10,7 +10,7 @@ import UIKit
 
 protocol SearchParametersViewConfigurable: AnyObject {
   func resetSearchParametersView()
-  func clearSearchParam(_ searchParam: SearchFilterOption)
+  func clearSearchParam(_ searchParam: SearchFilterOptions)
 }
 
 class SearchParameterView: UIView {
@@ -21,7 +21,7 @@ class SearchParameterView: UIView {
   
   // MARK: - Properties
   
-  var searchFilterOptions: [SearchFilterOption] = []
+  var searchFilterOptions: [SearchFilterOptions] = []
   
   // MARK: - Outlets
   
