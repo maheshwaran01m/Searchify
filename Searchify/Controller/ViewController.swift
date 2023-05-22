@@ -78,6 +78,13 @@ class ViewController: UIViewController {
   let searchController = UISearchController(searchResultsController: nil)
   
   var searchWorker: StudentSearchWorker?
+  // Parameter Based Search
+  var chosenParameter: SearchParameter?
+  
+  var canShowSearchParameters: Bool {
+    guard let chosenParameter else { return false }
+    return !chosenParameter.chosenFilterOptions.isEmpty
+  }
   
   private func configureSearchBar() {
     self.navigationItem.searchController = searchController
@@ -204,6 +211,90 @@ extension ViewController: UISearchBarDelegate, UISearchResultsUpdating {
   }
   
   func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-    print("Search Parameter")
+    openSearchParameterVC(searchBar)
+  }
+}
+
+// MARK: - Custom Search Parameter Filter
+
+extension ViewController {
+  
+  private func openSearchParameterVC(_ search: UISearchBar) {
+    let vc = SearchParameterVC()
+    if let chosenParameter {
+      vc.searchParameter = chosenParameter
+    } else {
+      vc.searchParameter.filterOptions = SearchFilterOption.searchFilterOptions
+    }
+    vc.applyButtonTapClosure = { [weak self] value in
+      vc.dismiss(animated: true) {
+        self?.chosenParameter = value
+        self?.updateParameterSearchWorker()
+      }
+    }
+    if let sheet = vc.sheetPresentationController {
+      sheet.detents = [.medium()]
+    }
+    present(vc, animated: true)
+  }
+  
+  private func updateParameterSearchWorker() {
+    let searchWorker = searchWorker
+    if let chosenParameter {
+      searchWorker?.searchParameter = chosenParameter
+    } else {
+      /* After we reset the selected parameter, we need to pass the default
+       search parameters to ParameterSearchWorker */
+      let searchParameter = SearchParameter()
+      searchParameter.filterOptions = SearchFilterOption.searchFilterOptions
+      searchWorker?.searchParameter = searchParameter
+    }
+    reloadTableViewHeader()
+//    guard let searchController = resultSearchController else { return }
+    // When searchParameter Filter or logic type updated, we need to update the search result
+//    searchController.updateSearchResults(for: searchController)
+  }
+  
+  private func reloadTableViewHeader() {
+    DispatchQueue.main.async {
+      self.tableView.reloadSections([0], with: .none)
+    }
+  }
+  
+  // MARK: - TableView Section Delegate
+  
+  func tableView(_ tableView: UITableView,
+                 viewForHeaderInSection section: Int) -> UIView? {
+    guard canShowSearchParameters,
+          let selectedFilterOptions = chosenParameter?.chosenFilterOptions else { return nil }
+    let searchFilterView = SearchParameterView()
+    searchFilterView.container.backgroundColor = tableView.backgroundColor
+    searchFilterView.searchFilterOptions = selectedFilterOptions
+    searchFilterView.delegate = self
+    tableView.sectionHeaderTopPadding = 0.0
+    return searchFilterView
+  }
+  
+  func tableView(_ tableView: UITableView,
+                 heightForHeaderInSection section: Int) -> CGFloat {
+    return canShowSearchParameters ? 50.0 : 0.0
+  }
+}
+
+// MARK: - SearchParameterDelegate
+
+extension ViewController: SearchParametersViewConfigurable {
+  
+  func clearSearchParam(_ searchParam: SearchFilterOptions) {
+    self.chosenParameter?.chosenFilterOptions.removeAll(where: {
+      $0.title == searchParam.title
+    })
+    reloadTableViewHeader()
+    updateParameterSearchWorker()
+  }
+  
+  func resetSearchParametersView() {
+    self.chosenParameter = nil
+    updateParameterSearchWorker()
   }
 }
