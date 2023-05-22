@@ -162,15 +162,15 @@ class CreateStudentVC: UIViewController {
     ])
     
     NSLayoutConstraint.activate([
-      studentNameField.heightAnchor.constraint(equalToConstant: 44),
-      courseNameField.heightAnchor.constraint(equalToConstant: 44),
-      departmentField.heightAnchor.constraint(equalToConstant: 44),
-      savebutton.heightAnchor.constraint(equalToConstant: 44),
-      completeToggle.heightAnchor.constraint(equalToConstant: 44),
-      studentNameLabel.heightAnchor.constraint(equalToConstant: 44),
-      courseNameLabel.heightAnchor.constraint(equalToConstant: 44),
-      departmentNameLabel.heightAnchor.constraint(equalToConstant: 44),
-      completeLabel.heightAnchor.constraint(equalToConstant: 44)
+      studentNameField.heightAnchor.constraint(equalToConstant: 34),
+      courseNameField.heightAnchor.constraint(equalToConstant: 34),
+      departmentField.heightAnchor.constraint(equalToConstant: 34),
+      savebutton.heightAnchor.constraint(equalToConstant: 34),
+      completeToggle.heightAnchor.constraint(equalToConstant: 34),
+      studentNameLabel.heightAnchor.constraint(equalToConstant: 34),
+      courseNameLabel.heightAnchor.constraint(equalToConstant: 34),
+      departmentNameLabel.heightAnchor.constraint(equalToConstant: 34),
+      completeLabel.heightAnchor.constraint(equalToConstant: 34)
     ])
   }
   

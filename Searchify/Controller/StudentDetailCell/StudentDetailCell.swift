@@ -21,10 +21,6 @@ class StudentDetailCell: UITableViewCell {
   
   // MARK: - Override Methods
   
-  override func awakeFromNib() {
-    super.awakeFromNib()
-  }
-  
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
     self.backgroundColor = .systemBackground
