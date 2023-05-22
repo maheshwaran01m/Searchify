@@ -9,5 +9,5 @@ Search Parameters
 
 **Example Video**
 
-https://github.com/maheshwaran01m/Searchify/assets/102943217/1116486b-3465-4d9b-bb3e-e1b4337b3e9b
+https://github.com/maheshwaran01m/Searchify/assets/102943217/f6bdd005-44f4-4032-9abc-df6ea9b39386
 
