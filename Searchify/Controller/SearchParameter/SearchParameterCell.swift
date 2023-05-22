@@ -10,24 +10,34 @@ import UIKit
 
 class SearchParameterCell: UICollectionViewCell {
   
+  static let identifier = "SearchParameterCell"
+  
   // MARK: - Outlets
   
   let detailLabel: UILabel = {
-    $0.font = UIFont.systemFont(ofSize: 14)
+    $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
     $0.textColor = .black
     $0.textAlignment = .center
     return $0
   }(UILabel())
   
   lazy var imageView: UIImageView = {
-    $0.image =  UIImage(systemName: "checkmark")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+    
+    $0.image =  UIImage(systemName: "checkmark", withConfiguration: UIImage.SymbolConfiguration(
+      weight: .semibold))?.withTintColor(.white, renderingMode: .alwaysOriginal)
     return $0
   }(UIImageView())
   
   // MARK: - Init
   
-  override func awakeFromNib() {
-    super.awakeFromNib()
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    setupView()
+    addAccessibilityLabels()
+  }
+
+  required init?(coder: NSCoder) {
+    super.init(coder: coder)
     setupView()
     addAccessibilityLabels()
   }
@@ -41,13 +51,13 @@ class SearchParameterCell: UICollectionViewCell {
   // MARK: - Appearance
   
   private func setupView() {
-    contentView.layer.borderColor = UIColor.black.cgColor
-    contentView.layer.borderWidth = 0.7
+    contentView.layer.borderColor = UIColor.gray.cgColor
+    contentView.layer.borderWidth = 0.5
     contentView.layer.cornerRadius = 16
     contentView.layer.masksToBounds = true
   }
   
-  func configureView(using filterOption: SearchFilterOptions, isSelected: Bool = false) {
+  func configureView(using filterOption: SearchFilterOption, isSelected: Bool = false) {
     detailLabel.text = filterOption.title
     updateContainerView(isSelected: isSelected)
   }
@@ -55,28 +65,27 @@ class SearchParameterCell: UICollectionViewCell {
   private func updateContainerView(isSelected: Bool) {
     contentView.backgroundColor = isSelected ? .blue : .systemBackground
     detailLabel.textColor = isSelected ? .white : .blue
+    detailLabel.textAlignment = isSelected ? .center : .left
     imageView.isHidden = !isSelected
+    configureConstraints()
   }
   
   private func configureConstraints() {
-    let horizontalStack = UIStackView(arrangedSubviews: [imageView, detailLabel])
-    contentView.addSubview(horizontalStack)
+    contentView.addSubview(imageView)
+    contentView.addSubview(detailLabel)
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    detailLabel.translatesAutoresizingMaskIntoConstraints = false
     
     NSLayoutConstraint.activate([
-      horizontalStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      horizontalStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-      horizontalStack.topAnchor.constraint(equalTo: contentView.topAnchor),
-      horizontalStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+      detailLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+      detailLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+      detailLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
       
-      imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 8),
-      imageView.widthAnchor.constraint(equalToConstant: 30),
-      imageView.heightAnchor.constraint(equalToConstant: 30),
-      
-      detailLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-      detailLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-      detailLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -8),
-      detailLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 2),
-      detailLabel.heightAnchor.constraint(equalToConstant: 30)
+      imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 3),
+      imageView.centerYAnchor.constraint(equalTo: detailLabel.centerYAnchor),
+      imageView.trailingAnchor.constraint(equalTo: detailLabel.leadingAnchor, constant: -3),
+      imageView.widthAnchor.constraint(equalToConstant: 20),
+      imageView.heightAnchor.constraint(equalToConstant: 20),
     ])
   }
   

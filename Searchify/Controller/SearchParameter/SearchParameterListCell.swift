@@ -62,6 +62,8 @@ class SearchParamsListCell: UICollectionViewCell {
   }
   
   private func configureConstraints() {
+    clearButton.translatesAutoresizingMaskIntoConstraints = false
+    detailLabel.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       clearButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -8),
       clearButton.widthAnchor.constraint(equalToConstant: 30),

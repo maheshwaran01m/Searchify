@@ -109,7 +109,7 @@ class ViewController: UIViewController {
   
   private func setupSearchWorker() {
     let parameter = SearchParameter()
-    parameter.filterOptions = SearchFilterOption.searchFilterOptions
+    parameter.filterOptions = ParameterFilterOption.searchFilterOptions
     let searchWorker = StudentSearchWorker(searchParameter: parameter) { [weak self] (_, predicate) in
       self?.viewModel.searchPredicate = predicate
       self?.viewModel.updateSearchResult {
@@ -224,7 +224,7 @@ extension ViewController {
     if let chosenParameter {
       vc.searchParameter = chosenParameter
     } else {
-      vc.searchParameter.filterOptions = SearchFilterOption.searchFilterOptions
+      vc.searchParameter.filterOptions = ParameterFilterOption.searchFilterOptions
     }
     vc.applyButtonTapClosure = { [weak self] value in
       vc.dismiss(animated: true) {
@@ -233,7 +233,8 @@ extension ViewController {
       }
     }
     if let sheet = vc.sheetPresentationController {
-      sheet.detents = [.medium()]
+      sheet.detents = [.large(), .medium()]
+      sheet.prefersGrabberVisible = true
     }
     present(vc, animated: true)
   }
@@ -246,11 +247,10 @@ extension ViewController {
       /* After we reset the selected parameter, we need to pass the default
        search parameters to ParameterSearchWorker */
       let searchParameter = SearchParameter()
-      searchParameter.filterOptions = SearchFilterOption.searchFilterOptions
+      searchParameter.filterOptions = ParameterFilterOption.searchFilterOptions
       searchWorker?.searchParameter = searchParameter
     }
     reloadTableViewHeader()
-//    guard let searchController = resultSearchController else { return }
     // When searchParameter Filter or logic type updated, we need to update the search result
 //    searchController.updateSearchResults(for: searchController)
   }
@@ -285,7 +285,7 @@ extension ViewController {
 
 extension ViewController: SearchParametersViewConfigurable {
   
-  func clearSearchParam(_ searchParam: SearchFilterOptions) {
+  func clearSearchParam(_ searchParam: SearchFilterOption) {
     self.chosenParameter?.chosenFilterOptions.removeAll(where: {
       $0.title == searchParam.title
     })

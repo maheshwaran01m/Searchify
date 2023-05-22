@@ -17,7 +17,7 @@ class StudentSearchWorker {
     }
   }
   
-  private var selectedFilterOptions: [SearchFilterOptions] = []
+  private var selectedFilterOptions: [SearchFilterOption] = []
   
   init(searchParameter: SearchParameter, searchResult: (([String]?, NSPredicate?) -> Void)? = nil) {
     self.searchParameter = searchParameter
