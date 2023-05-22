@@ -12,6 +12,10 @@
 		9D1CCFC22A19B8A000CD4885 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1CCFC12A19B8A000CD4885 /* ViewController.swift */; };
 		9D1CCFC72A19B8A000CD4885 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D1CCFC62A19B8A000CD4885 /* Assets.xcassets */; };
 		9D1CCFCA2A19B8A000CD4885 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D1CCFC82A19B8A000CD4885 /* LaunchScreen.storyboard */; };
+		9D25F74F2A1B1944007DDFDD /* SearchParameterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25F74E2A1B1944007DDFDD /* SearchParameterVC.swift */; };
+		9D25F7512A1B1958007DDFDD /* SearchParameterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25F7502A1B1958007DDFDD /* SearchParameterCell.swift */; };
+		9D25F7532A1B196E007DDFDD /* SearchParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25F7522A1B196E007DDFDD /* SearchParameterView.swift */; };
+		9D25F7552A1B1980007DDFDD /* SearchParameterListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25F7542A1B1980007DDFDD /* SearchParameterListCell.swift */; };
 		9D622BBF2A19CC2B00BFC8E2 /* StudentDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D622BBE2A19CC2B00BFC8E2 /* StudentDetailCell.swift */; };
 		9D622BC12A19DB3700BFC8E2 /* CreateStudentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D622BC02A19DB3700BFC8E2 /* CreateStudentVC.swift */; };
 		9D622BC42A1A176600BFC8E2 /* StudentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D622BC32A1A176600BFC8E2 /* StudentListViewModel.swift */; };
@@ -29,6 +33,10 @@
 		9D1CCFC62A19B8A000CD4885 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D1CCFC92A19B8A000CD4885 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D1CCFCB2A19B8A000CD4885 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D25F74E2A1B1944007DDFDD /* SearchParameterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchParameterVC.swift; sourceTree = "<group>"; };
+		9D25F7502A1B1958007DDFDD /* SearchParameterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchParameterCell.swift; sourceTree = "<group>"; };
+		9D25F7522A1B196E007DDFDD /* SearchParameterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchParameterView.swift; sourceTree = "<group>"; };
+		9D25F7542A1B1980007DDFDD /* SearchParameterListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchParameterListCell.swift; sourceTree = "<group>"; };
 		9D622BBE2A19CC2B00BFC8E2 /* StudentDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDetailCell.swift; sourceTree = "<group>"; };
 		9D622BC02A19DB3700BFC8E2 /* CreateStudentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateStudentVC.swift; sourceTree = "<group>"; };
 		9D622BC32A1A176600BFC8E2 /* StudentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListViewModel.swift; sourceTree = "<group>"; };
@@ -90,12 +98,24 @@
 		9D1CCFD52A19BB6800CD4885 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9D25F74D2A1B18BF007DDFDD /* SearchParameter */,
 				9D622BC22A1A174400BFC8E2 /* StudentListViewModel */,
 				9D622BBD2A19CBE600BFC8E2 /* StudentDetailCell */,
 				9D1CCFC12A19B8A000CD4885 /* ViewController.swift */,
 				9D622BC02A19DB3700BFC8E2 /* CreateStudentVC.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		9D25F74D2A1B18BF007DDFDD /* SearchParameter */ = {
+			isa = PBXGroup;
+			children = (
+				9D25F74E2A1B1944007DDFDD /* SearchParameterVC.swift */,
+				9D25F7502A1B1958007DDFDD /* SearchParameterCell.swift */,
+				9D25F7522A1B196E007DDFDD /* SearchParameterView.swift */,
+				9D25F7542A1B1980007DDFDD /* SearchParameterListCell.swift */,
+			);
+			path = SearchParameter;
 			sourceTree = "<group>";
 		};
 		9D622BBD2A19CBE600BFC8E2 /* StudentDetailCell */ = {
@@ -206,13 +226,17 @@
 				9D622BCA2A1A1FC600BFC8E2 /* CoreDataServices.swift in Sources */,
 				9D622BC82A1A180D00BFC8E2 /* SearchifyDataModel.xcdatamodeld in Sources */,
 				9D622BC12A19DB3700BFC8E2 /* CreateStudentVC.swift in Sources */,
+				9D25F7532A1B196E007DDFDD /* SearchParameterView.swift in Sources */,
 				9D622BBF2A19CC2B00BFC8E2 /* StudentDetailCell.swift in Sources */,
 				9D622BC42A1A176600BFC8E2 /* StudentListViewModel.swift in Sources */,
 				9D1CCFC22A19B8A000CD4885 /* ViewController.swift in Sources */,
+				9D25F7552A1B1980007DDFDD /* SearchParameterListCell.swift in Sources */,
 				9D1CCFBE2A19B8A000CD4885 /* AppDelegate.swift in Sources */,
+				9D25F74F2A1B1944007DDFDD /* SearchParameterVC.swift in Sources */,
 				9D622BCF2A1A534F00BFC8E2 /* SearchParameter.swift in Sources */,
 				9D1CCFC02A19B8A000CD4885 /* SceneDelegate.swift in Sources */,
 				9D622BCC2A1A505500BFC8E2 /* StudentSearchWorker.swift in Sources */,
+				9D25F7512A1B1958007DDFDD /* SearchParameterCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
