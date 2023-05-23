@@ -32,13 +32,13 @@ class SearchParameterView: UIView {
   }(UIView())
   
   private lazy var collectionView: UICollectionView = {
-    let layout = CustomFlowLayout()
+    let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .horizontal
     layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
     
     let collection = UICollectionView(frame: .zero,
                                       collectionViewLayout: layout)
-    collection.contentInsetAdjustmentBehavior = .always
+    collection.contentInsetAdjustmentBehavior = .never
     return collection
   }()
   
@@ -82,7 +82,7 @@ class SearchParameterView: UIView {
       
       horizontalStack.topAnchor.constraint(equalTo: container.topAnchor),
       horizontalStack.bottomAnchor.constraint(equalTo: container.bottomAnchor),
-      horizontalStack.leftAnchor.constraint(equalTo: container.leftAnchor),
+      horizontalStack.leftAnchor.constraint(equalTo: container.leftAnchor, constant: 10),
       horizontalStack.rightAnchor.constraint(equalTo: container.rightAnchor, constant: -10)
       
     ])
