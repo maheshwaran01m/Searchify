@@ -29,7 +29,7 @@ class SearchParameterVC: UIViewController {
   
   private lazy var clearButton: UIButton = {
     $0.setTitle("Clear", for: .normal)
-    $0.setTitleColor(.blue.withAlphaComponent(0.6), for: .normal)
+    $0.setTitleColor(.systemBlue, for: .normal)
     $0.isEnabled = false
     $0.accessibilityIdentifier =  "searchFilter clear button"
     $0.addTarget(self, action: #selector(clearButtonClicked(_:)),
@@ -68,7 +68,7 @@ class SearchParameterVC: UIViewController {
   private lazy var applyButton: UIButton = {
     $0.setTitle("Apply", for: .normal)
     $0.setTitleColor(.white, for: .normal)
-    $0.backgroundColor = .blue
+    $0.backgroundColor = .systemBlue
     $0.layer.cornerRadius = 8
     $0.layer.masksToBounds = true
     $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)

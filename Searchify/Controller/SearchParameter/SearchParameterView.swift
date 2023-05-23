@@ -44,7 +44,7 @@ class SearchParameterView: UIView {
   
   private lazy var resetButton: UIButton = {
     $0.setTitle("Reset", for: .normal)
-    $0.setTitleColor(.blue, for: .normal)
+    $0.setTitleColor(.systemBlue, for: .normal)
     $0.titleLabel?.font = UIFont.systemFont(ofSize: 14)
     $0.addTarget(self, action: #selector(resetButtonClicked(_:)),
                  for: .touchUpInside)

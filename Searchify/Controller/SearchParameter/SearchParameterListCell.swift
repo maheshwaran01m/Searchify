@@ -52,8 +52,6 @@ class SearchParamsListCell: UICollectionViewCell {
     contentView.layer.borderWidth = 0.5
     contentView.layer.cornerRadius = 6.0
     contentView.layer.masksToBounds = true
-    contentView.addSubview(detailLabel)
-    contentView.addSubview(clearButton)
     configureConstraints()
   }
   
@@ -62,18 +60,19 @@ class SearchParamsListCell: UICollectionViewCell {
   }
   
   private func configureConstraints() {
-    clearButton.translatesAutoresizingMaskIntoConstraints = false
-    detailLabel.translatesAutoresizingMaskIntoConstraints = false
+    
+    let horizontalStack = UIStackView(arrangedSubviews: [detailLabel, clearButton])
+    horizontalStack.axis = .horizontal
+    horizontalStack.spacing = 5
+    horizontalStack.distribution = .fill
+    contentView.addSubview(horizontalStack)
+    horizontalStack.translatesAutoresizingMaskIntoConstraints = false
+    
     NSLayoutConstraint.activate([
-      clearButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -8),
-      clearButton.widthAnchor.constraint(equalToConstant: 30),
-      clearButton.heightAnchor.constraint(equalToConstant: 30),
-      
-      detailLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-      detailLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-      detailLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 8),
-      detailLabel.rightAnchor.constraint(equalTo: clearButton.leftAnchor, constant: -2),
-      detailLabel.heightAnchor.constraint(equalToConstant: 30)
+      horizontalStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+      horizontalStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -5),
+      horizontalStack.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 8),
+      horizontalStack.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -8),
     ])
   }
   
