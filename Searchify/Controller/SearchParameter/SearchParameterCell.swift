@@ -63,29 +63,26 @@ class SearchParameterCell: UICollectionViewCell {
   }
   
   private func updateContainerView(isSelected: Bool) {
-    contentView.backgroundColor = isSelected ? .blue : .systemBackground
-    detailLabel.textColor = isSelected ? .white : .blue
-    detailLabel.textAlignment = isSelected ? .center : .left
+    contentView.backgroundColor = isSelected ? .systemBlue : .systemBackground
+    detailLabel.textColor = isSelected ? .white : .systemBlue
     imageView.isHidden = !isSelected
     configureConstraints()
   }
   
   private func configureConstraints() {
-    contentView.addSubview(imageView)
-    contentView.addSubview(detailLabel)
-    imageView.translatesAutoresizingMaskIntoConstraints = false
-    detailLabel.translatesAutoresizingMaskIntoConstraints = false
+    
+    let horizontalStack = UIStackView(arrangedSubviews: [imageView, detailLabel])
+    horizontalStack.axis = .horizontal
+    horizontalStack.spacing = 5
+    horizontalStack.distribution = .fill
+    contentView.addSubview(horizontalStack)
+    horizontalStack.translatesAutoresizingMaskIntoConstraints = false
     
     NSLayoutConstraint.activate([
-      detailLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-      detailLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
-      detailLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
-      
-      imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 3),
-      imageView.centerYAnchor.constraint(equalTo: detailLabel.centerYAnchor),
-      imageView.trailingAnchor.constraint(equalTo: detailLabel.leadingAnchor, constant: -3),
-      imageView.widthAnchor.constraint(equalToConstant: 20),
-      imageView.heightAnchor.constraint(equalToConstant: 20),
+      horizontalStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+      horizontalStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -5),
+      horizontalStack.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 8),
+      horizontalStack.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -8),
     ])
   }
   
