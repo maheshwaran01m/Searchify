@@ -1,13 +1,19 @@
 # Searchify
-Search Parameters
 
-- CoreData
-- Multiple Search Parameter
-- Swipe to delete
-- Update created data
-- Search Filter
+User Parameters
+- Create New Student Details (Add button)
+- Edit existing student Details  
+- Delete existing student details (swipe to delete)
+- Store student details in coreData
+
+Search:
+- Search Based on name, course, department
+
+SearchParameter:
+- Multiple Search Parameter introduced to handle based on the user specific filter
+
 
 **Example Video**
 
-https://github.com/maheshwaran01m/Searchify/assets/102943217/f6bdd005-44f4-4032-9abc-df6ea9b39386
+https://github.com/maheshwaran01m/Searchify/assets/102943217/9d9b1813-1c88-43f8-84d3-42466dafebb4
 
