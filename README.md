@@ -13,7 +13,12 @@ SearchParameter:
 - Multiple Search Parameter introduced to handle based on the user specific filter
 
 
+**Image**
+
+<img width="475" alt="Screenshot 2023-06-25 at 10 37 58" src="https://github.com/maheshwaran01m/Searchify/assets/102943217/1e0d88fa-b734-4803-987f-091f19e1e175">
+
+
 **Example Video**
 
-https://github.com/maheshwaran01m/Searchify/assets/102943217/9d9b1813-1c88-43f8-84d3-42466dafebb4
+https://github.com/maheshwaran01m/Searchify/assets/102943217/d798268e-213a-4f9a-88d6-0afb50ccbf9f
 
